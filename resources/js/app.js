@@ -27,6 +27,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import BootstrapVue from 'bootstrap-vue';
+
+import 'bootstrap-vue/dist/bootstrap-vue.min.css';
+
+Vue.use(BootstrapVue);
+
 const app = new Vue({
     el: '#app',
 });

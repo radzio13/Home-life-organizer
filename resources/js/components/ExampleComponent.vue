@@ -7,6 +7,7 @@
 
                     <div class="card-body">
                         I'm an example component.
+                        <b-button variant="success">Test</b-button>
                     </div>
                 </div>
             </div>
