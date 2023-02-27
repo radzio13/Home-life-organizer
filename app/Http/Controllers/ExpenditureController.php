@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class ExpenditureController extends Controller
+{
+    public function myExpenditureView(Request $request): View
+    {
+        return view('my-expenditure.index');
+    }
+}
