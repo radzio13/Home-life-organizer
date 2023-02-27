@@ -13,3 +13,15 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# MIX generated files
+/public/vue
+/public/js/app.js
+/public/js/*
+/public/css/app.css
+/public/css/*
+/public/mix-manifest.json
+
+# Node artifact files
+node_modules/
+dist/
