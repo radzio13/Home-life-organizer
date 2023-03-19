@@ -17,14 +17,14 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('name', 255)->comment('Nazwa przedsiębiorcy');
             $table->string('short_name', 255)->nullable()->comment('Krótka nazwa przedsiębiorcy');
-            $table->string('tax_number', 32)->nullable()->comment('NIP');
+            $table->string('tax_number', 32)->unique()->nullable()->comment('NIP');
             $table->string('city', 255)->nullable()->comment('Miejscowość');
             $table->string('street', 255)->nullable()->comment('Ulica');
             $table->string('zip_code', 12)->nullable()->comment('Kod pocztowy');
             $table->string('country', 32)->nullable()->comment('Kraj');
             $table->string('phone_number', 32)->nullable()->comment('Numer telefonu');
             $table->string('email', 64)->nullable()->comment('Adres e-mail');
-            $table->string('account_number', 64)->nullable()->comment('Numer konta');
+            $table->string('account_number', 64)->unique()->nullable()->comment('Numer konta');
             $table->timestamps();
             $table->softDeletes();
         });

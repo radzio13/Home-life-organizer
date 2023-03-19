@@ -1,6 +1,12 @@
 <template>
     <div class="container">
         <h4>Kategorie wydatków</h4>
+        <b-button
+            variant="success"
+            @click="$bvToast.show('new-expenditure-category-toast')"
+        >
+            Dodaj nową kategorię
+        </b-button>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -19,12 +25,17 @@
             </tbody>
             <b-spinner v-else></b-spinner>
         </table>
+        <new-expenditure-category-toast
+            @refreshData="getExpenditureCategories()"
+        ></new-expenditure-category-toast>
     </div>
 </template>
 
 <script>
+    import NewExpenditureCategoryToast from "../forms/NewExpenditureCategoryToast";
     export default {
         name: "ExpenditureCategories",
+        components: {NewExpenditureCategoryToast},
         data() {
             return {
                 expenditureCategories: [],

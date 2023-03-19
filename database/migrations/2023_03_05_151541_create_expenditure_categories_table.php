@@ -16,7 +16,7 @@ class CreateExpenditureCategoriesTable extends Migration
         Schema::create('expenditure_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->comment('Nazwa kategorii wydatków');
-            $table->string('code', 64)->comment('Kod kategorii wydatków');
+            $table->string('code', 64)->unique()->comment('Kod kategorii wydatków');
             $table->timestamps();
         });
     }
