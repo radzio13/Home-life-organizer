@@ -67,4 +67,32 @@ class DictionaryController extends Controller
             'message' => 'Pomyślnie dodano nową kategorię wydatków!',
         ]);
     }
+
+    /**
+     * @param ExpenditureCategory $expenditureCategory
+     * @return JsonResponse
+     */
+    public function deleteExpenditureCategory(ExpenditureCategory $expenditureCategory): JsonResponse
+    {
+        try {
+            DB::beginTransaction();
+
+            $expenditureCategory->delete();
+
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pomyślnie usunięto kategorię wydatków!',
+        ]);
+    }
 }

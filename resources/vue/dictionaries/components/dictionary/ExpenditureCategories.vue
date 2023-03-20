@@ -12,6 +12,7 @@
                 <tr>
                     <th>Lp.</th>
                     <th>Nazwa</th>
+                    <th>Akcja</th>
                 </tr>
             </thead>
             <tbody v-if="!isLoading">
@@ -21,6 +22,15 @@
                 >
                     <td>{{ index + 1 }}</td>
                     <td>{{ category.name }}</td>
+                    <td>
+                        <b-button
+                            variant="danger"
+                            @click="deleteExpenditureCategory(category.id)"
+                            :disabled="isSaving"
+                        >
+                            Usuń
+                        </b-button>
+                    </td>
                 </tr>
             </tbody>
             <b-spinner v-else></b-spinner>
@@ -39,7 +49,8 @@
         data() {
             return {
                 expenditureCategories: [],
-                isLoading: false
+                isLoading: false,
+                isSaving: false,
             }
         },
         methods: {
@@ -55,6 +66,22 @@
                     })
                     .finally(() => {
                         this.isLoading = false;
+                    });
+            },
+            deleteExpenditureCategory: function(categoryId) {
+                if (this.isSaving) {
+                    return;
+                }
+                this.isSaving = true;
+
+                return axios.post('/dictionaries/expenditure-categories/' + categoryId + '/delete')
+                    .then((response) => {
+                        this.$toast.success(response.data.message);
+                        this.getExpenditureCategories();
+                    }).catch(error => {
+                        this.$toast.error(error.response.data.message);
+                    }).finally(() => {
+                        this.isSaving = false;
                     });
             }
         },

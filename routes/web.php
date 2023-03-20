@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function() {
         Route::prefix('expenditure-categories')->as('expenditure-categories')->group(function () {
             Route::get('/', [DictionaryController::class, 'getExpenditureCategoriesData'])->name('getExpenditureCategoriesData');
             Route::post('store', [DictionaryController::class, 'storeExpenditureCategory'])->name('storeExpenditureCategory');
+            Route::post('{expenditureCategory}/delete', [DictionaryController::class, 'deleteExpenditureCategory'])->name('deleteExpenditureCategory');
         });
     });
 });
