@@ -30,10 +30,13 @@ Vue.component('dictionaries', require('../vue/dictionaries/components/Dictionari
  */
 
 import BootstrapVue from 'bootstrap-vue';
-
 import 'bootstrap-vue/dist/bootstrap-vue.min.css';
 
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+
 Vue.use(BootstrapVue);
+Vue.use(Toast);
 
 const app = new Vue({
     el: '#app',

@@ -13,13 +13,13 @@
             <b-form-group>
                 <b-button
                     variant="primary"
-                    @click=""
+                    @click="hideToastAndClearData()"
                 >
                     Anuluj
                 </b-button>
                 <b-button
                     variant="success"
-                    :disabled="expenditureCategory.name == '' || isSaving"
+                    :disabled="disabledSaveButton"
                     @click="storeNewExpenditureCategory()"
                 >
                     Zapisz
@@ -40,13 +40,18 @@ export default {
             isSaving: false
         }
     },
+    computed: {
+      disabledSaveButton: function () {
+          return this.expenditureCategory.name.length <= 2 || this.isSaving;
+      }
+    },
     methods: {
         hideToastAndClearData: function () {
             this.expenditureCategory.name = '';
             this.$bvToast.hide('new-expenditure-category-toast');
         },
         storeNewExpenditureCategory: function() {
-            if (this.expenditureCategory.name.length <= 2) {
+            if (this.disabledSaveButton) {
                 return;
             }
             this.isSaving = true;
@@ -55,10 +60,10 @@ export default {
                 name: this.expenditureCategory.name
             }).then((response) => {
                 this.hideToastAndClearData();
-                console.log(response.data.message); //TODO show notification
+                this.$toast.success(response.data.message);
                 this.$emit('refreshData');
             }).catch(error => {
-                console.log(error.response.data.message);
+                this.$toast.error(error.response.data.message);
             }).finally(() => {
                 this.isSaving = false;
             });

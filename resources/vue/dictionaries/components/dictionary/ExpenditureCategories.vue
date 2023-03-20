@@ -51,7 +51,7 @@
                         this.expenditureCategories = response.data.categories;
                     })
                     .catch((error) => {
-                        console.log(error);
+                        this.$toast.error('Wystąpił błąd podczas pobierania danych');
                     })
                     .finally(() => {
                         this.isLoading = false;
