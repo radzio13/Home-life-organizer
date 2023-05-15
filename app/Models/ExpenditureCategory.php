@@ -10,4 +10,9 @@ class ExpenditureCategory extends Model
     use HasFactory;
 
     protected $table = 'expenditure_categories';
+
+    protected $fillable = [
+        'name',
+        'code'
+    ];
 }

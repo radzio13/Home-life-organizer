@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/', [DictionaryController::class, 'getExpenditureCategoriesData'])->name('getExpenditureCategoriesData');
             Route::post('store', [DictionaryController::class, 'storeExpenditureCategory'])->name('storeExpenditureCategory');
             Route::post('{expenditureCategory}/delete', [DictionaryController::class, 'deleteExpenditureCategory'])->name('deleteExpenditureCategory');
+            Route::post('{expenditureCategory}/update', [DictionaryController::class, 'updateExpenditureCategory'])->name('updateExpenditureCategory');
         });
     });
 });
